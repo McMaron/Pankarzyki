@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dołącz
+{% endblock %}
+
+{% block main %}
+    {% if ligues %}
+    <h3>
+        Tu masz otwarte rekrutacje.
+    </h3>
+    <div>
+
+        <table>
+            <tr>
+                <td> Liga </td><td> Sędzia Kalosz (tzn: główny)</td><td> Zaczynają</td>
+            </tr>
+            {% for ligue_name in ligues %}
+            <tr>
+                <td> {{ ligues[loop.index0]["ligue_name"]}}</td>
+                <td> {{ ligues[loop.index0]["username"]}}</td>
+                <td> {{ ligues[loop.index0]["start_date"]}}</td>
+                <td>
+                    <form action= "{{url_for('join')}}" method="POST">
+                        <input type="hidden" name="ligue_name" value = "{{ligues[loop.index0]["ligue_name"]}}" />
+                        <fieldset>
+                                <button class="btn btn-default" type="submit">Dołącz</button>
+                        </fieldset>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br/><br/>
+
+    </div>
+    {% else %}
+    <div>
+            Brak rekrutacji <br/><br/><br/>
+    </div>
+    {% endif %}
+    <form action="{{ url_for('create') }}" method="GET">
+        <fieldset>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Stwórz Ligę</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

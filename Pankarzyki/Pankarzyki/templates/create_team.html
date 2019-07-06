@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dołącz
+{% endblock %}
+
+{% block main %}
+    <h3>
+        Dostępni zawodnicy:
+    </h3>
+    <form method="POST">
+        <div class="form-group">
+                <select required autocomplete="off" class="form-control" name="available_players">
+                    <option value="">Dostępni Gracze</option>
+                    {% for user in users %}
+                        <option value= "{{users[loop.index0]['id'] }}" > {{ users[loop.index0]["username"]}}</option>
+                    {% endfor %}
+                </select>
+        </div>
+        <fieldset>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Zapisz drużynę</button>
+            </div>
+        </fieldset>
+    </form>
+    <div>
+        Jeśli nie znalazłeś swojej randki, to bawi się już z kimś innym lub jeszcze jej tu nie ma. Zagadaj, niech do nas dołączy.
+    </div>
+{% endblock %}

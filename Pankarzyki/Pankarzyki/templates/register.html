@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('register') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Jak zwą Cię?" type="text" />
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="Hasło wydumaj" type="password" />
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="repeat password" placeholder="Jeszcze raz hasło" type="password" />
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="division">
+                    {% for div in divs %}
+                    <option value = {{ divs[loop.index0]["div_id"] }} >{{ divs[loop.index0]["div_name"]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Zapisz mnie!</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
